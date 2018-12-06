@@ -20,13 +20,19 @@ do
 				"1")
 					echo "Welcome to install and update shell, please wait......"
 					yum install -y yum-skip-broken
-					#yum update -y --skip-broken
+					yum update -y --skip-broken
 					yum install -y epel-release
 					yum install -y dhcp*
 					yum install -y python-pip*
 					yum install -y python-devel
 					yum groupinstall -y 'development tools'
 					yum install -y gparted*
+					yum install -y git*
+					git config --global user.name "quangnguyenthechick"
+					git config --global user.email "quang_kaka2009@email.com"
+					git clone https://github.com/QuangNguyenTheChick/Shell-scripts.git
+					yum install -y vsftp*
+					yum install -y samba* --skip-broken
 
 					echo "Update complete !!! Please choose another case to configuration your system."
 					;;
@@ -133,7 +139,7 @@ do
 
 				"4")
 					echo "----------Welcome to auto configuration File Transfer Protocol(FTP) shell----------"
-					yum install -y vsftp*
+						service vsftpd start
 						sed -ie 's/anonymous_enable=YES/anonymous_enable=NO/g' /etc/vsftpd/vsftpd.conf
 						sed -ie 's/#local_enable=YES/local_enable=YES/g'	 /etc/vsftpd/vsftpd.conf
 						sed -ie 's/#chroot_local_user=YES/chroot_local_user=YES/g' /etc/vsftpd/vsftpd.conf
@@ -153,7 +159,6 @@ do
 
 				"5")
 					echo "--#####		Welcome to auto configuration Samba shell		#####--"
-					yum install -y samba* --skip-broken
 					echo "If you haven't configuration your NIC and DHCP first, you have to re-configuration manually again or re-install this shell later"
 					sed -ie 's/host allow = 127. 192.168.12. 192.168.13. /& $temp /g' 	/etc/samba/smb.conf			
 					echo "
@@ -181,7 +186,7 @@ do
 					        smbpasswd -a chicken
 					fi
 					}
-					echo "We will add chicken user into your Samba serverm please type your password:"
+					echo "We will add chicken user into your Samba server please type your password:"
 					check_user chicken
 					;;
 
@@ -201,25 +206,25 @@ do
 
 				"7")
 					echo "********** Welcome to Auto check system information shell **********"
-					echo""
+					echo ""
 					echo -e "\e ***** HOSTNAME INFORMATION *****\e"
-						hostnamectl
-						echo""
-					echo -e "\e *****  FILE SYSTEM DISK SPCAE USAGE  *****\e" 
+						hostname
+						echo ""
+					echo -e "\e *****  FILE SYSTEM DISK SPACE USAGE  *****\e" 
 						df -h
-						echo""
+						echo ""
 					echo -e "\e ***** FREE AND USED MEMORY  *****\e"
 						free
-						echo""
+						echo ""
 					echo -e "\e ***** SYSTEM UPTIME AND LOAD *****\e"
 						uptime
-						echo""
+						echo ""
 					echo -e "\e ***** CURRENTLY LOGGED-IN USERS *****\e"
 						who
-						echo""
+						echo ""
 					echo -e "\e ***** TOP 10 MEMORY-CONSUMING PROCESSES *****\e"
 						ps -eo %mem,%cpu,comm --sort=-%mem | head -n 11
-						echo""
+						echo ""
 					echo -e "\e  DONE. \e"
 						;;
 				[Nn]* | Exit | exit | 0)
